@@ -1,0 +1,715 @@
+@charset "UTF-8";
+
+/* ==========================================================================
+   MAGIC GAMMA EXPLORER — NOTION-DERIVED EDITORIAL DESIGN SYSTEM
+   Governing Authority: DESIGN.md
+   Clean editorial hierarchy, pure white canvas, warm-stone alternating bands,
+   Inter typography with negative display tracking, restrained 1px hairlines,
+   soft multi-layer shadows, and Notion Blue (#0075DE) for all primary actions.
+   ========================================================================== */
+
+:root {
+  /* ------------------------------------------------------------------------
+     Colors: Monochrome Core + Notion Blue Interaction + Scientific Accents
+     ------------------------------------------------------------------------ */
+  --color-primary: #0075DE;
+  --color-primary-focus: #0075DE;
+  --color-primary-link: #097FE8;
+  --color-primary-pressed: #005BAB;
+  --color-primary-tint: #E6F3FE;
+  --color-primary-tint-hover: #F2F9FF;
+  --color-on-primary: #FFFFFF;
+
+  --color-ink: #000000;
+  --color-ink-95: rgba(0, 0, 0, 0.95);
+  --color-ink-85: rgba(0, 0, 0, 0.85);
+  --color-ink-60: rgba(0, 0, 0, 0.60);
+  --color-body-secondary: #615D59;
+  --color-muted: #A39E98;
+  --color-muted-trans: rgba(0, 0, 0, 0.54);
+
+  --color-surface: #FFFFFF;
+  --color-surface-warm: #F6F5F4;
+  --color-surface-card: #F9F9F8;
+  --color-surface-subtle: #FDFDFD;
+
+  --color-hairline: #DFDCD9;
+  --color-hairline-trans: rgba(0, 0, 0, 0.10);
+  --color-hairline-light: rgba(0, 0, 0, 0.06);
+
+  /* Scientific / Illustration Accents */
+  --color-accent-amber: #FFB110;
+  --color-accent-amber-deep: #E89D01;
+  --color-accent-coral: #F64932;
+  --color-accent-red: #E32D14;
+  --color-success: #1AAE39;
+  --color-success-tint: #D0F4D8;
+  --color-accent-indigo: #1313BA;
+  --color-chip-lavender: #EADBFA;
+
+  /* Domain-Specific Scientific Markers */
+  --color-gamma: #D97706; /* High contrast amber for gamma photons */
+  --color-gamma-tint: #FEF3C7;
+  --color-hadron: #2563EB; /* Clean scientific blue for hadron background */
+  --color-hadron-tint: #EFF6FF;
+
+  /* ------------------------------------------------------------------------
+     Typography System (Inter & Source Serif 4)
+     ------------------------------------------------------------------------ */
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --font-serif: 'Source Serif 4', Georgia, 'Times New Roman', serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+  /* Strict Radii Tokens from DESIGN.md */
+  --radius-xs: 4px;   /* Ghost controls, tags */
+  --radius-sm: 8px;   /* Primary & secondary buttons, inputs, links */
+  --radius-md: 12px;  /* Cards, modals, visualization frames */
+  --radius-full: 9999px; /* Chips, badges, status pills */
+
+  /* Spacing Tokens */
+  --section-padding-y: 96px;
+  --container-max-width: 1200px;
+  --container-gutter: 24px;
+  --card-gap: 8px;
+
+  /* Measured Multi-Layer Whispering Shadows */
+  --shadow-under-rule: rgba(0, 0, 0, 0.1) 0px 1px 0px 0px;
+  --shadow-soft: rgba(0, 0, 0, 0.01) 0px 0.175px 1.041px 0px,
+                 rgba(0, 0, 0, 0.02) 0px 0.8px 2.925px 0px,
+                 rgba(0, 0, 0, 0.027) 0px 2.025px 7.847px 0px,
+                 rgba(0, 0, 0, 0.04) 0px 4px 18px 0px;
+  --shadow-deep: rgba(0, 0, 0, 0.008) 0px 0.667px 3.502px 0px,
+                 rgba(0, 0, 0, 0.016) 0px 2.933px 7.252px 0px,
+                 rgba(0, 0, 0, 0.02) 0px 7.2px 14.462px 0px,
+                 rgba(0, 0, 0, 0.024) 0px 13.867px 28.348px 0px,
+                 rgba(0, 0, 0, 0.03) 0px 23.333px 52.123px 0px,
+                 rgba(0, 0, 0, 0.04) 0px 36px 89px 0px;
+}
+
+/* --------------------------------------------------------------------------
+   CSS Reset & Base Rules
+   -------------------------------------------------------------------------- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-family: var(--font-sans);
+  background-color: var(--color-surface);
+  color: var(--color-ink);
+  color-scheme: light;
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  min-height: 100vh;
+  background-color: var(--color-surface);
+  color: var(--color-ink-85);
+  font-family: var(--font-sans);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;
+  overflow-x: hidden;
+  position: relative;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+button {
+  background: none;
+  border: none;
+  font: inherit;
+  cursor: pointer;
+  color: inherit;
+}
+
+input, select, textarea {
+  font: inherit;
+}
+
+/* Global Focus Outline from DESIGN.md */
+:focus-visible {
+  outline: 2px solid var(--color-primary-focus) !important;
+  outline-offset: 2px !important;
+}
+
+/* Ensure smooth anchor scrolling without getting cropped under fixed navbar */
+[id] {
+  scroll-margin-top: 80px;
+}
+
+/* --------------------------------------------------------------------------
+   Layout & Container Primitives
+   -------------------------------------------------------------------------- */
+.obs-shell {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: var(--color-surface);
+}
+
+.obs-container {
+  width: 100%;
+  max-width: var(--container-max-width);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--container-gutter);
+  padding-right: var(--container-gutter);
+}
+
+/* Complete Section Editorial Bands with Alternating Surface Rhythm */
+.obs-band {
+  width: 100%;
+  padding-top: var(--section-padding-y);
+  padding-bottom: var(--section-padding-y);
+  position: relative;
+  border-bottom: 1px solid var(--color-hairline-trans);
+}
+
+.obs-band--white {
+  background-color: var(--color-surface);
+}
+
+.obs-band--warm {
+  background-color: var(--color-surface-warm);
+}
+
+@media (max-width: 768px) {
+  .obs-band {
+    padding-top: 56px;
+    padding-bottom: 56px;
+  }
+}
+
+/* Standard Section Header */
+.obs-section-header {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 40px;
+}
+
+.obs-section-header--centered {
+  text-align: center;
+  align-items: center;
+}
+
+.obs-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.35;
+  letter-spacing: 0.125px;
+  color: var(--color-body-secondary);
+  text-transform: uppercase;
+}
+
+.obs-title {
+  font-family: var(--font-sans);
+  font-size: 54px;
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -1.875px;
+  color: var(--color-ink);
+  margin: 0;
+}
+
+@media (max-width: 1024px) {
+  .obs-title {
+    font-size: 40px;
+    letter-spacing: -1.2px;
+  }
+}
+
+@media (max-width: 640px) {
+  .obs-title {
+    font-size: 32px;
+    letter-spacing: -0.8px;
+  }
+}
+
+.obs-subtitle {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--color-body-secondary);
+  max-width: 640px;
+  margin: 0;
+}
+
+.obs-subtitle--centered {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* --------------------------------------------------------------------------
+   Typography Hierarchy Scale
+   -------------------------------------------------------------------------- */
+.type-hero-display {
+  font-size: 96px;
+  font-weight: 600;
+  line-height: 1.05;
+  letter-spacing: -4.6px;
+}
+
+.type-display-lg {
+  font-size: 72px;
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: -2px;
+}
+
+.type-display-md {
+  font-size: 54px;
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -1.875px;
+}
+
+.type-display-sm {
+  font-size: 40px;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+.type-title-lg {
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+.type-title-md {
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -0.25px;
+}
+
+.type-title-sm {
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: -0.125px;
+}
+
+.type-quote {
+  font-family: var(--font-serif);
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.55;
+}
+
+.type-body {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+.type-body-medium {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.type-body-strong {
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.5;
+}
+
+.type-button {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.45;
+}
+
+.type-body-sm {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.45;
+}
+
+.type-caption {
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.35;
+  letter-spacing: 0.125px;
+}
+
+/* --------------------------------------------------------------------------
+   Button System (Strictly Adhering to DESIGN.md Recipes)
+   -------------------------------------------------------------------------- */
+.btn-primary {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  box-sizing: border-box;
+  min-height: 38px;
+  padding: 6px 15px;
+  background-color: var(--color-primary);
+  color: var(--color-on-primary);
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+  cursor: pointer;
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  text-decoration: none;
+  text-align: center;
+  white-space: nowrap;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.btn-primary:hover {
+  background-color: var(--color-primary-pressed);
+}
+
+.btn-primary:focus {
+  background-color: var(--color-primary-pressed);
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+.btn-primary--header {
+  min-height: 36px;
+  padding: 4px 14px;
+}
+
+.btn-secondary {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  box-sizing: border-box;
+  min-height: 38px;
+  padding: 6px 15px;
+  background-color: var(--color-primary-tint);
+  color: var(--color-primary-pressed);
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+  cursor: pointer;
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  text-decoration: none;
+  text-align: center;
+  white-space: nowrap;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.btn-secondary:hover {
+  background-color: var(--color-primary-tint-hover);
+}
+
+.btn-secondary:focus {
+  background-color: var(--color-primary-tint-hover);
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+.btn-secondary-white {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  box-sizing: border-box;
+  min-height: 38px;
+  padding: 6px 15px;
+  background-color: var(--color-surface);
+  color: var(--color-primary-link);
+  border: 1px solid var(--color-hairline-trans);
+  border-radius: var(--radius-sm);
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+  cursor: pointer;
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  text-decoration: none;
+  text-align: center;
+  white-space: nowrap;
+  transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+
+.btn-secondary-white:hover {
+  background-color: var(--color-hairline);
+  color: var(--color-ink);
+}
+
+.btn-secondary-white:focus {
+  background-color: var(--color-hairline);
+  color: var(--color-ink);
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+.btn-ghost {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  box-sizing: border-box;
+  min-height: 30px;
+  padding: 5px 10px;
+  background-color: transparent;
+  color: var(--color-ink-85);
+  border: 0;
+  border-radius: var(--radius-xs);
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+  cursor: pointer;
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.btn-ghost:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.btn-ghost:focus {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* --------------------------------------------------------------------------
+   Card Variants
+   -------------------------------------------------------------------------- */
+.card-base {
+  background-color: var(--color-surface);
+  color: var(--color-ink-85);
+  border: 1px solid var(--color-hairline-trans);
+  border-radius: var(--radius-md);
+  padding: 24px;
+  box-sizing: border-box;
+  position: relative;
+  transition: box-shadow 0.2s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.2s ease;
+}
+
+.card-warm {
+  background-color: var(--color-surface-card);
+  color: var(--color-ink-85);
+  border: 1px solid var(--color-hairline-trans);
+  border-radius: var(--radius-md);
+  padding: 24px;
+  box-sizing: border-box;
+}
+
+.card-lift:hover {
+  box-shadow: var(--shadow-soft);
+  border-color: rgba(0, 0, 0, 0.18);
+}
+
+/* --------------------------------------------------------------------------
+   Chips & Badges
+   -------------------------------------------------------------------------- */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 16px;
+  letter-spacing: 0.125px;
+  white-space: nowrap;
+}
+
+.chip--lavender {
+  background-color: var(--color-chip-lavender);
+  color: #5B21B6;
+}
+
+.chip--blue {
+  background-color: var(--color-primary-tint);
+  color: var(--color-primary-pressed);
+}
+
+.chip--amber {
+  background-color: var(--color-gamma-tint);
+  color: #92400E;
+}
+
+.chip--green {
+  background-color: var(--color-success-tint);
+  color: #065F46;
+}
+
+.chip--neutral {
+  background-color: rgba(0, 0, 0, 0.06);
+  color: var(--color-body-secondary);
+}
+
+/* --------------------------------------------------------------------------
+   Table Styling
+   -------------------------------------------------------------------------- */
+.editorial-table-wrap {
+  width: 100%;
+  overflow-x: auto;
+  border: 1px solid var(--color-hairline-trans);
+  border-radius: var(--radius-md);
+  background-color: var(--color-surface);
+}
+
+.editorial-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 14px;
+}
+
+.editorial-table th {
+  padding: 14px 20px;
+  background-color: var(--color-surface-warm);
+  color: var(--color-body-secondary);
+  font-weight: 500;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-bottom: 1px solid var(--color-hairline-trans);
+}
+
+.editorial-table td {
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--color-hairline-trans);
+  color: var(--color-ink-85);
+  font-size: 14px;
+}
+
+.editorial-table tr:last-child td {
+  border-bottom: none;
+}
+
+.editorial-table tr:hover td {
+  background-color: rgba(0, 0, 0, 0.015);
+}
+
+/* --------------------------------------------------------------------------
+   Form Controls & Sliders
+   -------------------------------------------------------------------------- */
+.editorial-slider {
+  width: 100%;
+  height: 4px;
+  background: var(--color-hairline);
+  border-radius: var(--radius-full);
+  outline: none;
+  -webkit-appearance: none;
+  cursor: pointer;
+}
+
+.editorial-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--color-primary);
+  cursor: pointer;
+  border: 2px solid var(--color-surface);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.25);
+  transition: transform 0.1s ease, background-color 0.15s ease;
+}
+
+.editorial-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.15);
+  background-color: var(--color-primary-pressed);
+}
+
+.editorial-slider:focus-visible::-webkit-slider-thumb {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* --------------------------------------------------------------------------
+   Visualization Frame
+   Framing dark astronomical or WebGL canvases inside clean white/warm borders
+   -------------------------------------------------------------------------- */
+.visualization-frame {
+  position: relative;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-hairline-trans);
+  background: #060913; /* Astronomical dark interior ONLY inside frame */
+  color: #FFFFFF;
+  overflow: hidden;
+  box-shadow: var(--shadow-soft);
+}
+
+.visualization-frame__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 18px;
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: 12px;
+  font-family: var(--font-mono);
+  color: #94A3B8;
+}
+
+.visualization-frame__footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 18px;
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(8px);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: 12px;
+  font-family: var(--font-mono);
+  color: #94A3B8;
+}
+
+/* --------------------------------------------------------------------------
+   Keyframe Animations (Restrained & Purposeful)
+   -------------------------------------------------------------------------- */
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes pulseSubtle {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+.animate-pulse {
+  animation: pulseSubtle 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

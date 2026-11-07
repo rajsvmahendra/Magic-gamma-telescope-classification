@@ -1,0 +1,146 @@
+import React from 'react';
+import { Lightbulb, ArrowRight, ShieldCheck, Telescope } from 'lucide-react';
+
+export default function InsightEngineSection() {
+  const findings = [
+    {
+      num: '01',
+      headline: '84.07%',
+      subhead: 'Accuracy Ceiling',
+      text: 'Random Forest achieves 84.07% test accuracy, outperforming the linear decision boundary by +5.32 percentage points.',
+      tag: 'vs 78.75% Logistic Regression'
+    },
+    {
+      num: '02',
+      headline: '0.8869',
+      subhead: 'ROC-AUC Separability',
+      text: 'Ensemble trees deliver high ranking separation (+0.0481 gain), maintaining discrimination across varying observational thresholds.',
+      tag: 'Area Under Curve (Spark)'
+    },
+    {
+      num: '03',
+      headline: '95.08%',
+      subhead: 'Gamma Retention',
+      text: 'Preserves 2,298 out of 2,417 true celestial gamma photons. Only 119 primary signal events are missed across the entire test set.',
+      tag: 'TP: 2,298 • FN: 119'
+    },
+    {
+      num: '04',
+      headline: '64.00%',
+      subhead: 'Hadron Rejection',
+      text: 'Filters out 848 background cosmic-ray showers, subduing hadronic background noise despite severe morphological overlap.',
+      tag: 'TN: 848 • FP: 477'
+    },
+    {
+      num: '05',
+      headline: 'Dual Cut',
+      subhead: 'Error Minimization',
+      text: 'Non-linear tree splits simultaneously cut gamma signal loss by 47.8% and background false alarms by 15.9% compared to logistic baseline.',
+      tag: 'Ensemble Advantage'
+    }
+  ];
+
+  return (
+    <section id="insights" className="obs-band obs-band--warm">
+      <div className="obs-container" style={{ display: 'flex', flexDirection: 'column', gap: '36px' }}>
+        
+        {/* Section Header */}
+        <div className="obs-section-header">
+          <div className="obs-eyebrow">
+            <Lightbulb size={13} style={{ color: 'var(--color-primary)' }} />
+            <span>08 · WHAT WE LEARNED</span>
+          </div>
+          <h2 className="obs-title">What Did the Experiment Show?</h2>
+          <p className="obs-subtitle">
+            Five quantified conclusions across 19,020 simulated air shower events processed through distributed Apache Spark ML pipelines.
+          </p>
+        </div>
+
+        {/* 5 Findings Grid Cards */}
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
+            gap: '16px'
+          }}
+        >
+          {findings.map((f) => (
+            <div
+              key={f.num}
+              className="card-base card-lift"
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'space-between',
+                padding: '20px',
+                gap: '12px'
+              }}
+            >
+              <div>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: '11px', fontFamily: 'var(--font-mono)', color: 'var(--color-body-secondary)', marginBottom: '4px' }}>
+                  <span>FINDING</span>
+                  <span>{f.num}</span>
+                </div>
+                <div style={{ fontSize: '32px', fontWeight: 700, color: 'var(--color-ink)', letterSpacing: '-0.5px' }}>
+                  {f.headline}
+                </div>
+                <div style={{ fontSize: '12px', fontWeight: 600, color: 'var(--color-primary)', textTransform: 'uppercase', letterSpacing: '0.04em', margin: '4px 0 8px 0' }}>
+                  {f.subhead}
+                </div>
+                <p style={{ fontSize: '13px', color: 'var(--color-body-secondary)', lineHeight: 1.5, margin: 0 }}>
+                  {f.text}
+                </p>
+              </div>
+
+              <div style={{ fontSize: '11px', fontFamily: 'var(--font-mono)', color: 'var(--color-muted)', borderTop: '1px solid var(--color-hairline-trans)', paddingTop: '8px' }}>
+                {f.tag}
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Dual Astrophysical Reality & Operations Panels */}
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
+            gap: '20px'
+          }}
+        >
+          {/* Panel 1: Physical Reality */}
+          <div className="card-base" style={{ padding: '24px' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '12px' }}>
+              <Telescope size={18} style={{ color: '#D97706' }} />
+              <h4 style={{ fontSize: '18px', fontWeight: 700, color: 'var(--color-ink)', margin: 0 }}>
+                Physical Reality
+              </h4>
+            </div>
+            <p style={{ fontSize: '14px', color: 'var(--color-body-secondary)', lineHeight: 1.6, margin: 0 }}>
+              Cherenkov light showers generated by primary gamma photons produce narrow, highly elliptical light puddles pointing back along the telescope's optical axis toward the celestial emitter (low <code>fAlpha</code>, small <code>fWidth</code>).
+            </p>
+            <p style={{ fontSize: '14px', color: 'var(--color-body-secondary)', lineHeight: 1.6, marginTop: '12px' }}>
+              Conversely, hadronic cosmic rays (protons) cascade violently into chaotic multi-core sub-showers with high transverse momentum. Because single linear hyperplanes cannot disentangle these irregular geometries when shower energies vary, tree ensembles are required to isolate true gamma signatures from dominant cosmic-ray noise.
+            </p>
+          </div>
+
+          {/* Panel 2: Observatory Operations */}
+          <div className="card-base" style={{ padding: '24px' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '12px' }}>
+              <ShieldCheck size={18} style={{ color: '#2563EB' }} />
+              <h4 style={{ fontSize: '18px', fontWeight: 700, color: 'var(--color-ink)', margin: 0 }}>
+                Observatory Operations
+              </h4>
+            </div>
+            <p style={{ fontSize: '14px', color: 'var(--color-body-secondary)', lineHeight: 1.6, margin: 0 }}>
+              Retaining 95.08% of gamma events is critical because genuine very-high-energy (VHE) gamma rays from deep-space sources like the Crab Nebula or active galactic nuclei arrive at rates of mere photons per hour.
+            </p>
+            <p style={{ fontSize: '14px', color: 'var(--color-body-secondary)', lineHeight: 1.6, marginTop: '12px' }}>
+              While 477 hadrons remain misclassified as gammas in single-telescope trigger analysis, modern Cherenkov observatories employ stereoscopic coincidence between the twin MAGIC-I and MAGIC-II telescopes to eliminate remaining single-dish false positives.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  );
+}

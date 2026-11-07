@@ -1,0 +1,137 @@
+{
+  "dataset_name": "MAGIC gamma telescope data 2004",
+  "source": "UCI Machine Learning Repository",
+  "origin": "Major Atmospheric Gamma Imaging Cherenkov Telescope Project (La Palma)",
+  "relative_data_path": "../Data/magic04.data",
+  "relative_names_path": "../Data/magic04.names",
+  "total_records": 19020,
+  "missing_values": 0,
+  "classes": {
+    "g": {
+      "name": "Gamma (signal)",
+      "label_index": 0,
+      "count": 12332,
+      "percentage": 64.84,
+      "description": "High-energy gamma rays from point sources; produce elongated, compact elliptical Cherenkov showers pointing to the camera origin."
+    },
+    "h": {
+      "name": "Hadron (background)",
+      "label_index": 1,
+      "count": 6688,
+      "percentage": 35.16,
+      "description": "Hadronic cosmic rays in upper atmosphere; produce diffuse, irregular, and broader Cherenkov cascades."
+    }
+  },
+  "features": [
+    {
+      "name": "fLength",
+      "display_name": "Major Axis Length",
+      "unit": "mm",
+      "type": "continuous",
+      "description": "Major axis length of the reconstructed Hillas ellipse",
+      "min": 4.2835,
+      "max": 334.177,
+      "mean": 53.2502,
+      "stddev": 42.3649
+    },
+    {
+      "name": "fWidth",
+      "display_name": "Minor Axis Width",
+      "unit": "mm",
+      "type": "continuous",
+      "description": "Minor axis width of the reconstructed Hillas ellipse",
+      "min": 0.0,
+      "max": 256.382,
+      "mean": 22.181,
+      "stddev": 18.3461
+    },
+    {
+      "name": "fSize",
+      "display_name": "Shower Intensity (Log Size)",
+      "unit": "log10(photons)",
+      "type": "continuous",
+      "description": "Base-10 logarithm of the total photon count collected by all PMT pixels",
+      "min": 1.9413,
+      "max": 5.3233,
+      "mean": 2.825,
+      "stddev": 0.4726
+    },
+    {
+      "name": "fConc",
+      "display_name": "Core Concentration Ratio",
+      "unit": "ratio",
+      "type": "continuous",
+      "description": "Ratio of the sum of the two highest pixel signals over fSize",
+      "min": 0.0131,
+      "max": 0.893,
+      "mean": 0.3803,
+      "stddev": 0.1828
+    },
+    {
+      "name": "fConc1",
+      "display_name": "Peak Concentration Ratio",
+      "unit": "ratio",
+      "type": "continuous",
+      "description": "Ratio of the highest single pixel signal over fSize",
+      "min": 0.0003,
+      "max": 0.6752,
+      "mean": 0.2147,
+      "stddev": 0.1105
+    },
+    {
+      "name": "fAsym",
+      "display_name": "Longitudinal Asymmetry",
+      "unit": "mm",
+      "type": "continuous",
+      "description": "Distance from the highest pixel to center along the major axis",
+      "min": -457.9161,
+      "max": 575.2407,
+      "mean": -4.3317,
+      "stddev": 59.2061
+    },
+    {
+      "name": "fM3Long",
+      "display_name": "3rd Moment Along Major Axis",
+      "unit": "mm",
+      "type": "continuous",
+      "description": "Cubic root of the third moment along the major axis (skewness indicator)",
+      "min": -331.78,
+      "max": 238.321,
+      "mean": 10.5455,
+      "stddev": 51.0001
+    },
+    {
+      "name": "fM3Trans",
+      "display_name": "3rd Moment Along Minor Axis",
+      "unit": "mm",
+      "type": "continuous",
+      "description": "Cubic root of the third moment along the minor axis",
+      "min": -205.8947,
+      "max": 179.851,
+      "mean": 0.2497,
+      "stddev": 20.8274
+    },
+    {
+      "name": "fAlpha",
+      "display_name": "Orientation Angle",
+      "unit": "degrees",
+      "type": "continuous",
+      "description": "Angle between the major axis and vector from camera center to ellipse center (Gammas tend towards 0 deg)",
+      "min": 0.0,
+      "max": 90.0,
+      "mean": 27.6457,
+      "stddev": 26.1036
+    },
+    {
+      "name": "fDist",
+      "display_name": "Radial Distance",
+      "unit": "mm",
+      "type": "continuous",
+      "description": "Distance from the camera origin to the center of the shower ellipse",
+      "min": 1.2826,
+      "max": 495.561,
+      "mean": 193.818,
+      "stddev": 74.7318
+    }
+  ]
+}

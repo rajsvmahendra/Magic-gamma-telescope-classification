@@ -1,0 +1,110 @@
+[
+  {
+    "id": "gamma_sample_01",
+    "actual_class": "g",
+    "actual_class_name": "Gamma (signal)",
+    "description": "Typical compact, highly aligned gamma shower pointing directly towards camera center (small fAlpha).",
+    "features": {
+      "fLength": 31.6036,
+      "fWidth": 11.7235,
+      "fSize": 2.5185,
+      "fConc": 0.5303,
+      "fConc1": 0.3773,
+      "fAsym": 26.2722,
+      "fM3Long": 23.8238,
+      "fM3Trans": -9.9574,
+      "fAlpha": 6.3609,
+      "fDist": 205.261
+    }
+  },
+  {
+    "id": "gamma_sample_02",
+    "actual_class": "g",
+    "actual_class_name": "Gamma (signal)",
+    "description": "Moderate energy gamma shower with small orientation angle and tight core concentration.",
+    "features": {
+      "fLength": 28.7967,
+      "fWidth": 16.0021,
+      "fSize": 2.6449,
+      "fConc": 0.3918,
+      "fConc1": 0.1982,
+      "fAsym": 27.7004,
+      "fM3Long": 22.011,
+      "fM3Trans": -8.2027,
+      "fAlpha": 40.092,
+      "fDist": 81.8828
+    }
+  },
+  {
+    "id": "gamma_sample_03",
+    "actual_class": "g",
+    "actual_class_name": "Gamma (signal)",
+    "description": "High-energy gamma shower with large light deposition and sharp axis orientation.",
+    "features": {
+      "fLength": 75.1362,
+      "fWidth": 30.9205,
+      "fSize": 3.1611,
+      "fConc": 0.3168,
+      "fConc1": 0.1832,
+      "fAsym": -5.5277,
+      "fM3Long": 28.5525,
+      "fM3Trans": 21.8393,
+      "fAlpha": 4.648,
+      "fDist": 356.462
+    }
+  },
+  {
+    "id": "hadron_sample_01",
+    "actual_class": "h",
+    "actual_class_name": "Hadron (background)",
+    "description": "Extremely diffuse hadronic shower oriented almost perpendicular to origin (fAlpha ~ 88.5 deg).",
+    "features": {
+      "fLength": 102.0005,
+      "fWidth": 22.0017,
+      "fSize": 3.3161,
+      "fConc": 0.1064,
+      "fConc1": 0.0724,
+      "fAsym": -54.0862,
+      "fM3Long": 43.0553,
+      "fM3Trans": -15.0647,
+      "fAlpha": 88.4636,
+      "fDist": 274.9392
+    }
+  },
+  {
+    "id": "hadron_sample_02",
+    "actual_class": "h",
+    "actual_class_name": "Hadron (background)",
+    "description": "Massive cosmic ray shower with huge longitudinal extent (fLength > 215 mm) and high asymmetry.",
+    "features": {
+      "fLength": 215.323,
+      "fWidth": 67.8238,
+      "fSize": 3.4396,
+      "fConc": 0.1363,
+      "fConc1": 0.0725,
+      "fAsym": 298.614,
+      "fM3Long": -95.0773,
+      "fM3Trans": -57.2209,
+      "fAlpha": 76.924,
+      "fDist": 243.064
+    }
+  },
+  {
+    "id": "hadron_sample_03",
+    "actual_class": "h",
+    "actual_class_name": "Hadron (background)",
+    "description": "Irregular hadronic cascade with negative skewness and wide minor axis.",
+    "features": {
+      "fLength": 91.6558,
+      "fWidth": 18.8293,
+      "fSize": 2.7097,
+      "fConc": 0.4386,
+      "fConc1": 0.342,
+      "fAsym": -52.6841,
+      "fM3Long": -97.8373,
+      "fM3Trans": -17.0955,
+      "fAlpha": 63.8834,
+      "fDist": 130.7998
+    }
+  }
+]
